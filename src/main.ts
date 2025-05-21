@@ -4,8 +4,10 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import Redis from 'ioredis'
 
-// @ts-ignore
-const client = new Redis(process.env.REDIS_URL)
+try {
+  // @ts-ignore
+  var client = new Redis(process.env.REDIS_URL)
+} catch (error) {}
 
 const app = new Hono()
 
