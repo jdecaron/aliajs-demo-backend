@@ -1,10 +1,18 @@
+import 'dotenv/config'
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+import Redis from 'ioredis'
+
+const client = new Redis(process.env.REDIS_URL)
 
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
+app.use('/*', cors())
+
+app.get('/demo-95d8e9f5', async (c) => {
+    await client.set('foo', 'bar')
+    return c.json({})
 })
 
 serve({
