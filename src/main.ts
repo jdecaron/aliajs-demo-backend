@@ -4,7 +4,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import Redis from 'ioredis'
 
-const clients = {}
+const clients = {} as any
 function redis() {
   return clients.client2 || clients.client1
 }
@@ -24,6 +24,7 @@ app.get('/demo-95d8e9f5', async (c) => {
 })
 
 app.get('/demo-update-client2', async (c) => {
+  // @ts-ignore
   clients.client2 = new Redis(`redis://${c.req.query().host}:6379`)
   return c.json({})
 })
