@@ -25,6 +25,12 @@ app.get('/demo-95d8e9f5', async (c) => {
 
 app.get('/demo-update-client2', async (c) => {
   clients.client2 = new Redis(`redis://${c.req.query().host}:6379`)
+  return c.json({})
+})
+
+app.get('/demo-quit-client1', async (c) => {
+  await clients.client1.quit()
+  return c.json({})
 })
 
 serve({
