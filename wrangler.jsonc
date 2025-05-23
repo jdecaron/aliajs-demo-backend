@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aliajs-demo-backend",
-  "main": "src/index.ts",
+  "main": "src/main.ts",
   "compatibility_date": "2025-05-23",
   // "compatibility_flags": [
   //   "nodejs_compat"
