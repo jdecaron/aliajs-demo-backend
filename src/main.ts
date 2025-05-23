@@ -18,20 +18,20 @@ const app = new Hono()
 
 app.use('/*', cors())
 
-app.get('/demo-95d8e9f5', async (c) => {
+app.get('/counter', async (c) => {
     await redis().rpush(c.req.query().hash, c.req.query().counter)
     return c.json({})
 })
 
-app.get('/demo-update-client2', async (c) => {
-  // @ts-ignore
-  clients.client2 = new Redis(`redis://${c.req.query().host}:6379`)
-  return c.json({})
+app.get('/quit-client-1', async (c) => {
+    await clients.client1.quit()
+    return c.json({})
 })
 
-app.get('/demo-quit-client1', async (c) => {
-  await clients.client1.quit()
-  return c.json({})
+app.get('/update-client-2', async (c) => {
+    // @ts-ignore
+    clients.client2 = new Redis(`redis://${c.req.query().host}:6379`)
+    return c.json({})
 })
 
 serve({
