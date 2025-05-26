@@ -21,7 +21,7 @@ app.use('/*', cors())
 
 app.get('/counter', async (c) => {
     // await redis().rpush(c.req.query().hash, c.req.query().counter)
-    await fetch(`${process.env.REDIS_URL}/rpush/${c.req.query().hash}/${c.req.query().counter}`{
+    await fetch(`${process.env.REDIS_URL}/rpush/${c.req.query().hash}/${c.req.query().counter}`, {
       headers: {
         'Authorization': `Bearer ${process.env.REDIS_REST_TOKEN}`,
       },
